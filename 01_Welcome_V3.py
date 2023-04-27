@@ -29,5 +29,5 @@ while True:
         easygui.msgbox("Output Catalogue", "Output Catalogue")
 
     elif user_choice == "Exit":
-        easygui.msgbox("Exit", "Exit")
+        easygui.msgbox("Goodbye", "Exit")
         break
