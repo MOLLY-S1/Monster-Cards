@@ -31,30 +31,25 @@ cards = {"Stoneling":
 new_cards = {}
 
 
-# User enters power values
+# User enters title values
 text = "Enter the value of the listed power"
 title = "Card Enter"
 input_list = ["Card Name", "Strength", "Speed", "Stealth", "Cunning"]
 values = easygui.multenterbox(text, title, input_list)
 
-# User enters item prices
-text_price = "Enter Item Price"
-title_price = "Combo Price"
-input_price = [f"{items[1]}", f"{items[2]}", f"{items[3]}"]
-prices = easygui.multenterbox(text_price, title_price, input_price)
 
 # Add the user combo and prices to the dictionary
-new_combos[items[0]] = {}
-new_combos[items[0]][items[1]] = prices[0]
-new_combos[items[0]][items[2]] = prices[1]
-new_combos[items[0]][items[3]] = prices[2]
+new_cards[values[0]] = {}
+new_cards[values[0]][input_list[1]] = values[1]
+new_cards[values[0]][input_list[2]] = values[2]
+new_cards[values[0]][input_list[3]] = values[3]
 
-combo = ""
-for combo_ID, combo_info in new_combos.items():
-    ID = f"\nCombo Name: {combo_ID}"
-    for key, value in combo_info.items():
-        combo += f"{key}: {value}\n"
+card = ""
+for card_name, card_info in new_cards.items():
+    card_name = f"\nCard Name: {card_name}"
+    for key, value in card_info.items():
+        card += f"{key}: {value}\n"
 
 
-easygui.buttonbox(f"Is the following combo correct?\n"
-                  f"{ID}\n" f"{combo}", "Combo Check", choices=["Yes", "No"])
+easygui.buttonbox(f"Is the following card correct?\n"
+                  f"{card_name}\n" f"{card}", "Card Check", choices=["Yes", "No"])
