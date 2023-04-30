@@ -43,6 +43,7 @@ new_cards[values[0]] = {}
 new_cards[values[0]][input_list[1]] = values[1]
 new_cards[values[0]][input_list[2]] = values[2]
 new_cards[values[0]][input_list[3]] = values[3]
+new_cards[values[0]][input_list[4]] = values[4]
 
 card = ""
 for card_name, card_info in new_cards.items():
