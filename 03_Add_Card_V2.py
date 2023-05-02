@@ -31,29 +31,27 @@ cards = {"Stoneling":
 new_cards = {}
 
 
-# User enters item names
+# User enters power values
 card_name = easygui.enterbox("Enter Card Name:", "Card Name")
-strength = easygui.enterbox("Enter Strength Value:", "Value")
-Speed = easygui.enterbox("Enter Speed Value:", "Speed")
-Stealth = easygui.enterbox("Enter Stealth Value:", "Stealth")
-drink = easygui.enterbox("Enter Cunning Value:", "Cunning")
+strength = easygui.integerbox("Enter Strength Value:", "Strength")
+speed = easygui.integerbox("Enter Speed Value:", "Speed")
+stealth = easygui.integerbox("Enter Stealth Value:", "Stealth")
+cunning = easygui.integerbox("Enter Cunning Value:", "Cunning")
 
-# User enters item prices
-burger_price = easygui.enterbox(f"Enter {burger} Price", "Burger Price")
-side_price = easygui.enterbox(f"Enter {side} Price", "Side Price")
-drink_price = easygui.enterbox(f"Enter {drink} Price", "Drink Price")
 
-# Add the user combo and prices to the dictionary
-new_combos[combo_name] = {}
-new_combos[combo_name][burger] = burger_price
-new_combos[combo_name][side] = side_price
-new_combos[combo_name][drink] = drink_price
+# Add the values to the dictionary
+new_cards[card_name] = {}
+new_cards[card_name]["Strength"] = strength
+new_cards[card_name]["Speed"] = speed
+new_cards[card_name]["Stealth"] = stealth
+new_cards[card_name]["Cunning"] = cunning
 
-combo = ""
-for combo_ID, combo_info in new_combos.items():
-    ID = f"\nCombo Name: {combo_ID.title()}"
-    for key, value in combo_info.items():
-        combo += f"{key}: {value}\n"
+# Print full card
+card = ""
+for card_title, card_info in new_cards.items():
+    name = f"\nCard Name: {card_name.title()}"
+    for key, value in card_info.items():
+        card += f"{key}: {value}\n"
 
-easygui.buttonbox(f"Is the following combo correct?\n"
-                  f"{ID}\n" f"{combo}", "Combo Check", choices=["Yes", "No"])
+easygui.buttonbox(f"Is the following card correct?\n"
+                  f"{name}\n" f"{card}", "Card Check", choices=["Yes", "No"])
