@@ -1,8 +1,31 @@
-""" Component 3 Version 2, Add Card
-Trial 2, This code is the same as V1 but uses multiple enter boxes
-instead of a multi-enterbox for trialling"""
+""" Component 3 Version 3, Add Card
+Builds on my chosen trialled code of V2, now uses the blank and boundaries
+are now added to the integer boxes"""
 
 import easygui
+
+
+# Blank checker function
+def blank_check(question, title):
+    error = "That was not a valid input\n" \
+            "Please answer all questions"
+
+    while True:
+        try:
+            # Ask for input
+            response = easygui.enterbox(question, title)
+
+            # Check if answer is given
+            if response != "":
+                return response
+
+            else:
+                easygui.msgbox(error, "ERROR")
+
+        # Allow all values
+        except ValueError:
+            easygui.msgbox(error, "ERROR")
+
 
 # Card Catalogue
 cards = {"Stoneling":
@@ -30,14 +53,16 @@ cards = {"Stoneling":
 # Dictionary for new cards to be added and edited from
 new_cards = {}
 
-
 # User enters power values
-card_name = easygui.enterbox("Enter Card Name:", "Card Name")
-strength = easygui.integerbox("Enter Strength Value:", "Strength")
-speed = easygui.integerbox("Enter Speed Value:", "Speed")
-stealth = easygui.integerbox("Enter Stealth Value:", "Stealth")
-cunning = easygui.integerbox("Enter Cunning Value:", "Cunning")
-
+card_name = blank_check("Enter Card Name:", "Card Name")
+strength = easygui.integerbox("Enter Strength Value:", "Strength",
+                              lowerbound=0, upperbound=25)
+speed = easygui.integerbox("Enter Speed Value:", "Speed", lowerbound=0,
+                           upperbound=25)
+stealth = easygui.integerbox("Enter Stealth Value:", "Stealth", lowerbound=0,
+                             upperbound=25)
+cunning = easygui.integerbox("Enter Cunning Value:", "Cunning", lowerbound=0,
+                             upperbound=25)
 
 # Add the values to the dictionary
 new_cards[card_name] = {}
