@@ -27,7 +27,7 @@ while True:
             if change_value == "Power Value":
                 power = easygui.enterbox("Enter the name of the power value you "
                                          "want to change \n (eg. Strength)",
-                                         "Item Name")
+                                         "Item Name").title()
                 if power not in cards[name]:
                     easygui.msgbox("Sorry, that is not the name of "
                                    "an power in this card:\n\n"
@@ -39,9 +39,9 @@ while True:
                         "Item Name")
 
                 else:
-                    new = easygui.integerbox(f"Enter the value you want to change"
-                                             f" {power} to:", "New Value",
-                                             lowerbound=0, upperbound=25)
+                    new = easygui.integerbox(f"Enter the value you want to "
+                                             f"change {power} to:", "New Value"
+                                             ,lowerbound=0, upperbound=25)
                     cards[name][power] = new
 
             if change_value == "Card Name":

@@ -1,4 +1,4 @@
-"""Component 4 Version 4, Edit Card, now incorporates the blank checker and """
+"""Component 4 Version 4, Edit Card, now incorporates the blank checker"""
 
 import easygui
 
@@ -56,7 +56,7 @@ def edit(confirm_card):
 
             while current_value not in confirm_card[card_name]:
                 easygui.msgbox("Sorry, that is not the name of "
-                               "an power in this combo:\n\n"
+                               "an power in this card:\n\n"
                                f"{title}\n" f"{card}", "Error")
 
                 current_value = blank_check("Enter the name of the "

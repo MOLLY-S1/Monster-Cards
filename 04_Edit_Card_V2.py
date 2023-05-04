@@ -51,9 +51,9 @@ def edit(confirm_card):
                 confirm_card[new] = confirm_card.pop(card_name)
                 print(confirm_card)
 
-            correct = easygui.buttonbox(f"Is the following card correct?\n"
-                                        f"{title}\n" f"{card}", "Card Check",
-                                        choices=["Yes", "No"])
+        correct = easygui.buttonbox(f"Is the following card correct?\n"
+                                    f"{title}\n" f"{card}", "Card Check",
+                                    choices=["Yes", "No"])
 
 
 # Main routine
