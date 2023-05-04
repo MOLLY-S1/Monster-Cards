@@ -1,5 +1,5 @@
-"""Component 3, Version 4, Add Card
- now has the edit card function"""
+"""Component 3, Version 5, Add Card
+ now a function"""
 
 import easygui
 
@@ -76,11 +76,39 @@ def edit(confirm_card):
             confirm_card[new] = confirm_card.pop(card_name)
 
 
-# Main Routine
+# Add card function
+def add_card(card_list):
+    # Dictionary for new cards to be added and edited from
+    new_cards = {}
 
+    # User enters power values
+    name = blank_check("Enter Card Name:", "Card Name")
+    strength = easygui.integerbox("Enter Strength Value:", "Strength",
+                                  lowerbound=0, upperbound=25)
+    speed = easygui.integerbox("Enter Speed Value:", "Speed", lowerbound=0,
+                               upperbound=25)
+    stealth = easygui.integerbox("Enter Stealth Value:", "Stealth",
+                                 lowerbound=0,
+                                 upperbound=25)
+    cunning = easygui.integerbox("Enter Cunning Value:", "Cunning",
+                                 lowerbound=0,
+                                 upperbound=25)
+
+    # Add the values to the dictionary
+    new_cards[name] = {}
+    new_cards[name]["Strength"] = strength
+    new_cards[name]["Speed"] = speed
+    new_cards[name]["Stealth"] = stealth
+    new_cards[name]["Cunning"] = cunning
+
+    correct_card = edit(new_cards)
+    cards.update(correct_card)
+
+
+# Main Routine
 # Card Catalogue
 cards = {"Stoneling":
-         {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
+             {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
          "Vexscream":
              {"Strength": 1, "Speed": 6, "Stealth": 21, "Cunning": 19},
          "Dawnmirage":
@@ -101,26 +129,5 @@ cards = {"Stoneling":
              {"Strength": 17, "Speed": 19, "Stealth": 3, "Cunning": 2}
          }
 
-# Dictionary for new cards to be added and edited from
-new_cards = {}
-
-# User enters power values
-name = blank_check("Enter Card Name:", "Card Name")
-strength = easygui.integerbox("Enter Strength Value:", "Strength",
-                              lowerbound=0, upperbound=25)
-speed = easygui.integerbox("Enter Speed Value:", "Speed", lowerbound=0,
-                           upperbound=25)
-stealth = easygui.integerbox("Enter Stealth Value:", "Stealth", lowerbound=0,
-                             upperbound=25)
-cunning = easygui.integerbox("Enter Cunning Value:", "Cunning", lowerbound=0,
-                             upperbound=25)
-
-# Add the values to the dictionary
-new_cards[name] = {}
-new_cards[name]["Strength"] = strength
-new_cards[name]["Speed"] = speed
-new_cards[name]["Stealth"] = stealth
-new_cards[name]["Cunning"] = cunning
-
-correct_card = edit(new_cards)
-cards.update(correct_card)
+add_card(cards)
+print(cards)
