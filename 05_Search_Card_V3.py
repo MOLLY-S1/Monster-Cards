@@ -1,20 +1,7 @@
-""" Base Component
-Functions added when they have been tested and completed
-"""
+"""Component 5 Version 3, Search Card, builds on the code from version 12,
+includes edit card function from component 4"""
 
 import easygui
-
-
-# Function to display menu and welcome screen
-def welcome():
-    # Enter user choice
-    user_choice = easygui.buttonbox("Please choose an option:", "Menu Options",
-                                    choices=["Add Cards", "Search Catalogue",
-                                             "Delete Card", "Output Catalogue",
-                                             "Exit"])
-
-    # Output user choice
-    return user_choice
 
 
 # Blank checker function
@@ -90,79 +77,28 @@ def edit(confirm_card):
             confirm_card[new] = confirm_card.pop(card_name)
 
 
-# Add card function
-def add_card(card_list):
-    # Dictionary for new cards to be added and edited from
-    new_cards = {}
-
-    # User enters power values
-    name = blank_check("Enter Card Name:", "Card Name")
-    strength = easygui.integerbox("Enter Strength Value:", "Strength",
-                                  lowerbound=0, upperbound=25)
-    speed = easygui.integerbox("Enter Speed Value:", "Speed", lowerbound=0,
-                               upperbound=25)
-    stealth = easygui.integerbox("Enter Stealth Value:", "Stealth",
-                                 lowerbound=0,
-                                 upperbound=25)
-    cunning = easygui.integerbox("Enter Cunning Value:", "Cunning",
-                                 lowerbound=0,
-                                 upperbound=25)
-
-    # Add the values to the dictionary
-    new_cards[name] = {}
-    new_cards[name]["Strength"] = strength
-    new_cards[name]["Speed"] = speed
-    new_cards[name]["Stealth"] = stealth
-    new_cards[name]["Cunning"] = cunning
-
-    correct_card = edit(new_cards)
-    catalogue.update(correct_card)
-
-
-# MAIN ROUTINE
-
 catalogue = {"Stoneling":
              {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
          "Vexscream":
              {"Strength": 1, "Speed": 6, "Stealth": 21, "Cunning": 19},
          "Dawnmirage":
-             {"Strength": 5, "Speed": 15, "Stealth": 18, "Cunning": 22},
-         "Blazegolem":
-             {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
-         "Websnake":
-             {"Strength": 7, "Speed": 15, "Stealth": 10, "Cunning": 5},
-         "Moldvine":
-             {"Strength": 21, "Speed": 18, "Stealth": 14, "Cunning": 5},
-         "Vortexwing":
-             {"Strength": 19, "Speed": 13, "Stealth": 19, "Cunning": 2},
-         "Rotthing":
-             {"Strength": 16, "Speed": 7, "Stealth": 4, "Cunning": 12},
-         "Froststep":
-             {"Strength": 14, "Speed": 14, "Stealth": 17, "Cunning": 4},
-         "Wispghoul":
-             {"Strength": 17, "Speed": 19, "Stealth": 3, "Cunning": 2}
-         }
+             {"Strength": 5, "Speed": 15, "Stealth": 18, "Cunning": 22}}
 
-# Welcome message
-easygui.msgbox("Welcome to Monster Card Catalogue", "Welcome")
-choice = welcome()
+# User enters card name
+search_name = blank_check("Enter name of card: ", "Search").title()
 
-while choice != "Exit":
-    if choice == "Add Cards":
-        add_card(catalogue)
-        choice = welcome()
 
-    elif choice == "Search Catalogue":
-        print("Search Catalogue")
-        choice = welcome()
+if search_name in catalogue:
+    easygui.msgbox(f"{search_name} is a card in the monster card catalogue",
+                   "Card Found")
 
-    elif choice == "Delete Card":
-        print("Delete Card")
-        choice = welcome()
+    # Add the searched card to separate dictionary
+    searched_card = {search_name:catalogue[search_name]}
 
-    elif choice == "Output Catalogue":
-        print("Output Catalogue")
-        choice = welcome()
+    # Confirm the searched card
+    edit(searched_card)
 
-easygui.msgbox("Goodbye", "Goodbye")
-
+    print(catalogue)
+else:
+    easygui.msgbox(f"Sorry {search_name} is not a card in the monster card "
+                   f"catalogue", "Card Not Found")
