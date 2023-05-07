@@ -7,9 +7,6 @@ import easygui
 
 # Function to display menu and welcome screen
 def welcome():
-    # Welcome message
-    easygui.msgbox("Welcome to Monster Card Catalogue", "Welcome")
-
     # Enter user choice
     user_choice = easygui.buttonbox("Please choose an option:", "Menu Options",
                                     choices=["Add Cards", "Search Catalogue",
@@ -60,6 +57,7 @@ def edit(confirm_card):
                            f"{card_name} to the Monster Cards Catalogue",
                            "Card added")
             return confirm_card
+
 
         change_value = easygui.buttonbox("What would you like to change?",
                                          "Change Choice",
@@ -145,19 +143,26 @@ cards = {"Stoneling":
              {"Strength": 17, "Speed": 19, "Stealth": 3, "Cunning": 2}
          }
 
-welcome()
+# Welcome message
+easygui.msgbox("Welcome to Monster Card Catalogue", "Welcome")
+choice = welcome()
 
-if welcome() == "Add Card":
-    add_card(cards)
+while choice != "Exit":
+    if choice == "Add Cards":
+        add_card(cards)
+        choice = welcome()
 
-elif welcome() == "Search Catalogue":
-    print("Search Catalogue")
+    elif choice == "Search Catalogue":
+        print("Search Catalogue")
+        choice = welcome()
 
-elif welcome() == "Delete Card":
-    print("Delete Card")
+    elif choice == "Delete Card":
+        print("Delete Card")
+        choice = welcome()
 
-elif welcome() == "Output Catalogue":
-    print("Output Catalogue")
+    elif choice == "Output Catalogue":
+        print("Output Catalogue")
+        choice = welcome()
 
-elif welcome() == "Exit":
-    print("Goodbye")
+easygui.msgbox("Goodbye", "Goodbye")
+
