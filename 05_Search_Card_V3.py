@@ -5,25 +5,55 @@ import easygui
 
 
 # Blank checker function
-def blank_check(question, title):
+def blank_check(question, title, box):
     error = "That was not a valid input\n" \
             "Please answer all questions"
 
     while True:
-        try:
-            # Ask for input
-            response = easygui.enterbox(question, title)
+        # Enter-box
+        if box == "enter":
+            try:
+                # Ask for input
+                response = easygui.enterbox(question, title)
 
-            # Check if answer is given
-            if response != "":
-                return response
+                # If cancel is pressed
+                if not response:
+                    easygui.msgbox(error, "ERROR")
 
-            else:
+                # Check if answer is given
+                if response != "":
+                    return response
+
+                # Show error
+                else:
+                    easygui.msgbox(error, "ERROR")
+
+            # Allow all values
+            except ValueError:
                 easygui.msgbox(error, "ERROR")
 
-        # Allow all values
-        except ValueError:
-            easygui.msgbox(error, "ERROR")
+        # Integer-box
+        elif box == "integer":
+            try:
+                # Ask for input
+                response = easygui.integerbox(question, title,
+                                              upperbound=25, lowerbound=0)
+
+                # If cancel is pressed
+                if not response:
+                    easygui.msgbox(error, "ERROR")
+
+                # Check if answer is given
+                if response != "":
+                    return response
+
+                # Show error message
+                else:
+                    easygui.msgbox(error, "ERROR")
+
+            # Allow all values
+            except ValueError:
+                easygui.msgbox(error, "ERROR")
 
 
 # Edit card function
@@ -45,7 +75,6 @@ def edit(confirm_card):
                            "Card added")
             return confirm_card
 
-
         change_value = easygui.buttonbox("What would you like to change?",
                                          "Change Choice",
                                          choices=["Power Value",
@@ -54,7 +83,8 @@ def edit(confirm_card):
         if change_value == "Power Value":
             current_value = blank_check("Enter the name of the power "
                                         "which value you wish to "
-                                        "change:", "Power Name").title()
+                                        "change:", "Power Name",
+                                        "enter").title()
 
             while current_value not in confirm_card[card_name]:
                 easygui.msgbox("Sorry, that is not the name of "
@@ -63,37 +93,37 @@ def edit(confirm_card):
 
                 current_value = blank_check("Enter the name of the "
                                             "power which value you wish "
-                                            "to change:", "Power Name").title()
+                                            "to change:", "Power Name",
+                                            "enter").title()
 
-            new = easygui.integerbox(f"Enter the value you want to change"
-                                     f" {current_value} to:", "New Value",
-                                     lowerbound=0, upperbound=25)
+            new = blank_check(f"Enter the value you want to change"
+                              f" {current_value} to:", "New Value",
+                              "integer")
 
             confirm_card[card_name][current_value] = new
 
         elif change_value == "Card Name":
             new = blank_check(f"Enter the name you want to change "
-                              f"{card_name} to:", "New Name").title()
+                              f"{card_name} to:", "New Name", "enter").title()
             confirm_card[new] = confirm_card.pop(card_name)
 
 
 catalogue = {"Stoneling":
-             {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
-         "Vexscream":
-             {"Strength": 1, "Speed": 6, "Stealth": 21, "Cunning": 19},
-         "Dawnmirage":
-             {"Strength": 5, "Speed": 15, "Stealth": 18, "Cunning": 22}}
+                 {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
+             "Vexscream":
+                 {"Strength": 1, "Speed": 6, "Stealth": 21, "Cunning": 19},
+             "Dawnmirage":
+                 {"Strength": 5, "Speed": 15, "Stealth": 18, "Cunning": 22}}
 
 # User enters card name
-search_name = blank_check("Enter name of card: ", "Search").title()
-
+search_name = blank_check("Enter name of card: ", "Search", "enter").title()
 
 if search_name in catalogue:
     easygui.msgbox(f"{search_name} is a card in the monster card catalogue",
                    "Card Found")
 
     # Add the searched card to separate dictionary
-    searched_card = {search_name:catalogue[search_name]}
+    searched_card = {search_name: catalogue[search_name]}
 
     # Confirm the searched card
     edit(searched_card)

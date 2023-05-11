@@ -5,25 +5,55 @@ import easygui
 
 
 # Blank checker function
-def blank_check(question, title):
+def blank_check(question, title, box):
     error = "That was not a valid input\n" \
             "Please answer all questions"
 
     while True:
-        try:
-            # Ask for input
-            response = easygui.enterbox(question, title)
+        # Enter-box
+        if box == "enter":
+            try:
+                # Ask for input
+                response = easygui.enterbox(question, title)
 
-            # Check if answer is given
-            if response != "":
-                return response
+                # If cancel is pressed
+                if not response:
+                    easygui.msgbox(error, "ERROR")
 
-            else:
+                # Check if answer is given
+                if response != "":
+                    return response
+
+                # Show error
+                else:
+                    easygui.msgbox(error, "ERROR")
+
+            # Allow all values
+            except ValueError:
                 easygui.msgbox(error, "ERROR")
 
-        # Allow all values
-        except ValueError:
-            easygui.msgbox(error, "ERROR")
+        # Integer-box
+        elif box == "integer":
+            try:
+                # Ask for input
+                response = easygui.integerbox(question, title,
+                                              upperbound=25, lowerbound=0)
+
+                # If cancel is pressed
+                if not response:
+                    easygui.msgbox(error, "ERROR")
+
+                # Check if answer is given
+                if response != "":
+                    return response
+
+                # Show error message
+                else:
+                    easygui.msgbox(error, "ERROR")
+
+            # Allow all values
+            except ValueError:
+                easygui.msgbox(error, "ERROR")
 
 
 catalogue = {"Stoneling":
@@ -34,7 +64,7 @@ catalogue = {"Stoneling":
              {"Strength": 5, "Speed": 15, "Stealth": 18, "Cunning": 22}}
 
 # User enters card name
-search_name = blank_check("Enter name of card: ", "Search").title()
+search_name = blank_check("Enter name of card: ", "Search","enter").title()
 
 # Program outputs if card in catalogue
 if search_name in catalogue:
