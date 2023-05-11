@@ -31,8 +31,8 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Burger-Menu-Combos/00_Base_Final.py" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.05_Search_Card_V6">
-    <configuration name="00_Base_Final" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.02_Blank_Checker_V4">
+    <configuration name="02_Blank_Checker_V4" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Monster-Cards" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -40,11 +40,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../Burger-Menu-Combos" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../Burger-Menu-Combos/00_Base_Final.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\missm\OneDrive - Middleton Grange School\2023\Computer Science\Programing\Assessment\Monster-Cards\02_Blank_Checker_V4.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -139,11 +139,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.02_Blank_Checker_V4" />
         <item itemvalue="Python.05_Search_Card_V6" />
         <item itemvalue="Python.05_Search_Card_V5" />
         <item itemvalue="Python.05_Search_Card_V4" />
         <item itemvalue="Python.05_Search_Card_V3" />
-        <item itemvalue="Python.00_Base_Final" />
       </list>
     </recent_temporary>
   </component>

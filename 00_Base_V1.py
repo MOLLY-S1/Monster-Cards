@@ -18,25 +18,55 @@ def welcome():
 
 
 # Blank checker function
-def blank_check(question, title):
+def blank_check(question, title, box):
     error = "That was not a valid input\n" \
             "Please answer all questions"
 
     while True:
-        try:
-            # Ask for input
-            response = easygui.enterbox(question, title)
+        # Enter-box
+        if box == "enter":
+            try:
+                # Ask for input
+                response = easygui.enterbox(question, title)
 
-            # Check if answer is given
-            if response != "":
-                return response
+                # If cancel is pressed
+                if not response:
+                    easygui.msgbox(error, "ERROR")
 
-            else:
+                # Check if answer is given
+                if response != "":
+                    return response
+
+                # Show error
+                else:
+                    easygui.msgbox(error, "ERROR")
+
+            # Allow all values
+            except ValueError:
                 easygui.msgbox(error, "ERROR")
 
-        # Allow all values
-        except ValueError:
-            easygui.msgbox(error, "ERROR")
+        # Integer-box
+        elif box == "integer":
+            try:
+                # Ask for input
+                response = easygui.integerbox(question, title,
+                                              upperbound=25, lowerbound=0)
+
+                # If cancel is pressed
+                if not response:
+                    easygui.msgbox(error)
+
+                # Check if answer is given
+                if response != "":
+                    return response
+
+                # Show error message
+                else:
+                    easygui.msgbox(error, "ERROR")
+
+            # Allow all values
+            except ValueError:
+                easygui.msgbox(error, "ERROR")
 
 
 # Edit card function
@@ -57,7 +87,6 @@ def edit(confirm_card):
                            f"{card_name} to the Monster Cards Catalogue",
                            "Card added")
             return confirm_card
-
 
         change_value = easygui.buttonbox("What would you like to change?",
                                          "Change Choice",
@@ -122,26 +151,26 @@ def add_card(card_list):
 # MAIN ROUTINE
 
 catalogue = {"Stoneling":
-             {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
-         "Vexscream":
-             {"Strength": 1, "Speed": 6, "Stealth": 21, "Cunning": 19},
-         "Dawnmirage":
-             {"Strength": 5, "Speed": 15, "Stealth": 18, "Cunning": 22},
-         "Blazegolem":
-             {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
-         "Websnake":
-             {"Strength": 7, "Speed": 15, "Stealth": 10, "Cunning": 5},
-         "Moldvine":
-             {"Strength": 21, "Speed": 18, "Stealth": 14, "Cunning": 5},
-         "Vortexwing":
-             {"Strength": 19, "Speed": 13, "Stealth": 19, "Cunning": 2},
-         "Rotthing":
-             {"Strength": 16, "Speed": 7, "Stealth": 4, "Cunning": 12},
-         "Froststep":
-             {"Strength": 14, "Speed": 14, "Stealth": 17, "Cunning": 4},
-         "Wispghoul":
-             {"Strength": 17, "Speed": 19, "Stealth": 3, "Cunning": 2}
-         }
+                 {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
+             "Vexscream":
+                 {"Strength": 1, "Speed": 6, "Stealth": 21, "Cunning": 19},
+             "Dawnmirage":
+                 {"Strength": 5, "Speed": 15, "Stealth": 18, "Cunning": 22},
+             "Blazegolem":
+                 {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
+             "Websnake":
+                 {"Strength": 7, "Speed": 15, "Stealth": 10, "Cunning": 5},
+             "Moldvine":
+                 {"Strength": 21, "Speed": 18, "Stealth": 14, "Cunning": 5},
+             "Vortexwing":
+                 {"Strength": 19, "Speed": 13, "Stealth": 19, "Cunning": 2},
+             "Rotthing":
+                 {"Strength": 16, "Speed": 7, "Stealth": 4, "Cunning": 12},
+             "Froststep":
+                 {"Strength": 14, "Speed": 14, "Stealth": 17, "Cunning": 4},
+             "Wispghoul":
+                 {"Strength": 17, "Speed": 19, "Stealth": 3, "Cunning": 2}
+             }
 
 # Welcome message
 easygui.msgbox("Welcome to Monster Card Catalogue", "Welcome")
@@ -165,4 +194,3 @@ while choice != "Exit":
         choice = welcome()
 
 easygui.msgbox("Goodbye", "Goodbye")
-
