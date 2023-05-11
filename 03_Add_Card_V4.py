@@ -5,25 +5,55 @@ import easygui
 
 
 # Blank checker function
-def blank_check(question, title):
+def blank_check(question, title, box):
     error = "That was not a valid input\n" \
             "Please answer all questions"
 
     while True:
-        try:
-            # Ask for input
-            response = easygui.enterbox(question, title)
+        # Enter-box
+        if box == "enter":
+            try:
+                # Ask for input
+                response = easygui.enterbox(question, title)
 
-            # Check if answer is given
-            if response != "":
-                return response
+                # If cancel is pressed
+                if not response:
+                    easygui.msgbox(error, "ERROR")
 
-            else:
+                # Check if answer is given
+                if response != "":
+                    return response
+
+                # Show error
+                else:
+                    easygui.msgbox(error, "ERROR")
+
+            # Allow all values
+            except ValueError:
                 easygui.msgbox(error, "ERROR")
 
-        # Allow all values
-        except ValueError:
-            easygui.msgbox(error, "ERROR")
+        # Integer-box
+        elif box == "integer":
+            try:
+                # Ask for input
+                response = easygui.integerbox(question, title,
+                                              upperbound=25, lowerbound=0)
+
+                # If cancel is pressed
+                if not response:
+                    easygui.msgbox(error, "ERROR")
+
+                # Check if answer is given
+                if response != "":
+                    return response
+
+                # Show error message
+                else:
+                    easygui.msgbox(error, "ERROR")
+
+            # Allow all values
+            except ValueError:
+                easygui.msgbox(error, "ERROR")
 
 
 # Edit card function
@@ -53,7 +83,8 @@ def edit(confirm_card):
         if change_value == "Power Value":
             current_value = blank_check("Enter the name of the power "
                                         "which value you wish to "
-                                        "change:", "Power Name").title()
+                                        "change:", "Power Name",
+                                        "enter").title()
 
             while current_value not in confirm_card[card_name]:
                 easygui.msgbox("Sorry, that is not the name of "
@@ -62,17 +93,18 @@ def edit(confirm_card):
 
                 current_value = blank_check("Enter the name of the "
                                             "power which value you wish "
-                                            "to change:", "Power Name").title()
+                                            "to change:", "Power Name",
+                                            "enter").title()
 
-            new = easygui.integerbox(f"Enter the value you want to change"
-                                     f" {current_value} to:", "New Value",
-                                     lowerbound=0, upperbound=25)
+            new = blank_check(f"Enter the value you want to change"
+                              f" {current_value} to:", "New Value",
+                              "integer")
 
             confirm_card[card_name][current_value] = new
 
         elif change_value == "Card Name":
             new = blank_check(f"Enter the name you want to change "
-                              f"{card_name} to:", "New Name").title()
+                              f"{card_name} to:", "New Name", "enter").title()
             confirm_card[new] = confirm_card.pop(card_name)
 
 
@@ -80,7 +112,7 @@ def edit(confirm_card):
 
 # Card Catalogue
 cards = {"Stoneling":
-         {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
+             {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
          "Vexscream":
              {"Strength": 1, "Speed": 6, "Stealth": 21, "Cunning": 19},
          "Dawnmirage":
@@ -105,22 +137,19 @@ cards = {"Stoneling":
 new_cards = {}
 
 # User enters power values
-name = blank_check("Enter Card Name:", "Card Name")
-strength = easygui.integerbox("Enter Strength Value:", "Strength",
-                              lowerbound=0, upperbound=25)
-speed = easygui.integerbox("Enter Speed Value:", "Speed", lowerbound=0,
-                           upperbound=25)
-stealth = easygui.integerbox("Enter Stealth Value:", "Stealth", lowerbound=0,
-                             upperbound=25)
-cunning = easygui.integerbox("Enter Cunning Value:", "Cunning", lowerbound=0,
-                             upperbound=25)
+card_name = blank_check("Enter Card Name:", "Card Name", "enter")
+strength = blank_check("Enter Strength Value:", "Strength",
+                       "integer")
+speed = blank_check("Enter Speed Value:", "Speed", "integer")
+stealth = blank_check("Enter Stealth Value:", "Stealth", "integer")
+cunning = blank_check("Enter Cunning Value:", "Cunning", "integer")
 
 # Add the values to the dictionary
-new_cards[name] = {}
-new_cards[name]["Strength"] = strength
-new_cards[name]["Speed"] = speed
-new_cards[name]["Stealth"] = stealth
-new_cards[name]["Cunning"] = cunning
+new_cards[card_name] = {}
+new_cards[card_name]["Strength"] = strength
+new_cards[card_name]["Speed"] = speed
+new_cards[card_name]["Stealth"] = stealth
+new_cards[card_name]["Cunning"] = cunning
 
 correct_card = edit(new_cards)
 cards.update(correct_card)

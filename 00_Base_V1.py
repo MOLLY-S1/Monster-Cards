@@ -54,7 +54,7 @@ def blank_check(question, title, box):
 
                 # If cancel is pressed
                 if not response:
-                    easygui.msgbox(error)
+                    easygui.msgbox(error, "ERROR")
 
                 # Check if answer is given
                 if response != "":
@@ -96,7 +96,8 @@ def edit(confirm_card):
         if change_value == "Power Value":
             current_value = blank_check("Enter the name of the power "
                                         "which value you wish to "
-                                        "change:", "Power Name").title()
+                                        "change:", "Power Name",
+                                        "enter").title()
 
             while current_value not in confirm_card[card_name]:
                 easygui.msgbox("Sorry, that is not the name of "
@@ -105,17 +106,18 @@ def edit(confirm_card):
 
                 current_value = blank_check("Enter the name of the "
                                             "power which value you wish "
-                                            "to change:", "Power Name").title()
+                                            "to change:", "Power Name",
+                                            "enter").title()
 
-            new = easygui.integerbox(f"Enter the value you want to change"
-                                     f" {current_value} to:", "New Value",
-                                     lowerbound=0, upperbound=25)
+            new = blank_check(f"Enter the value you want to change"
+                              f" {current_value} to:", "New Value",
+                              "integer")
 
             confirm_card[card_name][current_value] = new
 
         elif change_value == "Card Name":
             new = blank_check(f"Enter the name you want to change "
-                              f"{card_name} to:", "New Name").title()
+                              f"{card_name} to:", "New Name", "enter").title()
             confirm_card[new] = confirm_card.pop(card_name)
 
 
@@ -125,17 +127,12 @@ def add_card(card_list):
     new_cards = {}
 
     # User enters power values
-    name = blank_check("Enter Card Name:", "Card Name")
-    strength = easygui.integerbox("Enter Strength Value:", "Strength",
-                                  lowerbound=0, upperbound=25)
-    speed = easygui.integerbox("Enter Speed Value:", "Speed", lowerbound=0,
-                               upperbound=25)
-    stealth = easygui.integerbox("Enter Stealth Value:", "Stealth",
-                                 lowerbound=0,
-                                 upperbound=25)
-    cunning = easygui.integerbox("Enter Cunning Value:", "Cunning",
-                                 lowerbound=0,
-                                 upperbound=25)
+    name = blank_check("Enter Card Name:", "Card Name", "enter")
+    strength = blank_check("Enter Strength Value:", "Strength",
+                           "integer")
+    speed = blank_check("Enter Speed Value:", "Speed", "integer")
+    stealth = blank_check("Enter Stealth Value:", "Stealth", "integer")
+    cunning = blank_check("Enter Cunning Value:", "Cunning", "integer")
 
     # Add the values to the dictionary
     new_cards[name] = {}
