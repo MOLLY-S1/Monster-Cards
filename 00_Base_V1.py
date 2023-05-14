@@ -122,7 +122,7 @@ def edit(confirm_card):
 
 
 # Add card function
-def add_card(card_list):
+def add_card():
     # Dictionary for new cards to be added and edited from
     new_cards = {}
 
@@ -145,10 +145,38 @@ def add_card(card_list):
     catalogue.update(correct_card)
 
 
+# Function to search catalogue for card
+def search_card():
+    while True:
+        # User enters card name
+        search_name = blank_check("Enter name of card: ", "Search",
+                                  "enter").title()
+
+        while search_name not in catalogue:
+            easygui.msgbox(
+                f"Sorry {search_name} is not a card in the Monster Card "
+                f"catalogue", "Card Not Found")
+
+            # User enters card name
+            search_name = blank_check("Enter name of card: ", "Search",
+                                      "enter").title()
+
+        # Add the searched card to separate dictionary
+        searched_card = {search_name: catalogue[search_name]}
+
+        # Confirm the searched card
+        correct_card = edit(searched_card)
+
+        # Update the catalogue
+        del [catalogue[search_name]]
+        catalogue.update(correct_card)
+        break
+
+
 # MAIN ROUTINE
 
 catalogue = {"Stoneling":
-                 {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
+             {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
              "Vexscream":
                  {"Strength": 1, "Speed": 6, "Stealth": 21, "Cunning": 19},
              "Dawnmirage":
@@ -175,11 +203,11 @@ choice = welcome()
 
 while choice != "Exit":
     if choice == "Add Cards":
-        add_card(catalogue)
+        add_card()
         choice = welcome()
 
     elif choice == "Search Catalogue":
-        print("Search Catalogue")
+        search_card()
         choice = welcome()
 
     elif choice == "Delete Card":
