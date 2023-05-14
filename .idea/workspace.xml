@@ -31,7 +31,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Burger-Menu-Combos/00_Base_Final.py" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.02_Blank_Checker_V4 (1)">
+  <component name="RunManager" selected="Python.05_Search_Card_V5">
     <configuration name="02_Blank_Checker_V4 (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Monster-Cards" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -139,11 +139,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.05_Search_Card_V5" />
         <item itemvalue="Python.02_Blank_Checker_V4 (1)" />
         <item itemvalue="Python.03_Add_Card_V4" />
         <item itemvalue="Python.02_Blank_Checker_V4" />
         <item itemvalue="Python.05_Search_Card_V6" />
-        <item itemvalue="Python.05_Search_Card_V5" />
       </list>
     </recent_temporary>
   </component>

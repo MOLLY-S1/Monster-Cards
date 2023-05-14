@@ -42,7 +42,8 @@ def blank_check(question, title, box):
 
                 # If cancel is pressed
                 if not response:
-                    easygui.msgbox(error)
+                    easygui.msgbox(f"{error}, all integers must be between "
+                                   f"1 and 25", "Error")
 
                 # Check if answer is given
                 if response != "":
@@ -50,11 +51,13 @@ def blank_check(question, title, box):
 
                 # Show error message
                 else:
-                    easygui.msgbox(error, "ERROR")
+                    easygui.msgbox(f"{error}, all integers must be between "
+                                   f"1 and 25", "Error")
 
             # Allow all values
             except ValueError:
-                easygui.msgbox(error, "ERROR")
+                easygui.msgbox(f"{error}, all integers must be between "
+                                   f"1 and 25", "Error")
 
 
 # Main Routine
