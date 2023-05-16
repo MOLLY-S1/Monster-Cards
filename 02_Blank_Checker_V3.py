@@ -5,26 +5,20 @@ import easygui
 
 
 # Blank checker function
-def blank_check(question):
-    error = "That was not a valid input\n" \
-            "Please answer all questions"
-
+def blank_check(question, title):
+    error = "Please answer all questions"
     while True:
-        try:
-            # Ask for input
-            response = easygui.enterbox(question, "ENTER")
+        # Ask for input
+        response = easygui.enterbox(question, title)
 
-            # Check if answer is given
-            if response != "":
-                return response
+        # If cancel is pressed
+        if not response:
+            easygui.msgbox(error, "Error")
 
-            else:
-                easygui.msgbox(error, "ERROR")
-
-        # Allow all values
-        except ValueError:
-            easygui.msgbox(error, "ERROR")
+        # If valid response
+        else:
+            return response
 
 
 # Main Routine
-enter = blank_check("Enter:")
+enter = blank_check("Enter:", "Enter")

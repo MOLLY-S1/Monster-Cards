@@ -1,5 +1,5 @@
 """ Component Version 2, Blank Checker
-Use try/accept and pull error messages out of the loop"""
+built on from version 1, now in a loop and allows cancel buttons"""
 import easygui
 
 error = "Please answer all questions\n"
@@ -7,17 +7,15 @@ valid = False
 
 # Continue asking until a valid amount is entered
 while not valid:
-    try:
-        # Ask for input
-        enter = easygui.enterbox("Enter:", "Enter")
+    # Ask for input
+    response = easygui.enterbox("Enter: ")
 
-        # Check if answer is given
-        if enter != "":
-            valid = True
+    # If cancel is pressed
+    if not response:
+        easygui.msgbox(error, "Error")
 
-        else:
-            easygui.msgbox(error,"ERROR")
+    # If valid response
+    else:
+        break
 
-    # Accept all values
-    except ValueError:
-        easygui.msgbox(error, "ERROR")
+
