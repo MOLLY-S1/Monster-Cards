@@ -84,4 +84,5 @@ catalogue = {"Stoneling":
                  {"Strength": 1, "Speed": 6, "Stealth": 21, "Cunning": 19},
              "Dawnmirage":
                  {"Strength": 5, "Speed": 15, "Stealth": 18, "Cunning": 22}}
+
 delete_card()
