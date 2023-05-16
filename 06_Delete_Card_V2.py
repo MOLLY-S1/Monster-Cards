@@ -3,9 +3,41 @@ adds confirmation statement and blank checker"""
 
 import easygui
 
+
+# Blank checker function
+def blank_check(question, title, box):
+    error = "Please answer all questions"
+    while True:
+        # Enter-box
+        if box == "enter":
+            # Ask for input
+            response = easygui.enterbox(question, title)
+
+            # If cancel is pressed
+            if not response:
+                easygui.msgbox(error, "Error")
+
+            # If valid response
+            else:
+                return response
+
+        else:
+            # Ask for input
+            response = easygui.integerbox(question, title, upperbound=25,
+                                          lowerbound=0)
+
+            # If cancel is pressed
+            if not response:
+                easygui.msgbox(error, "Error")
+
+            # If valid response
+            else:
+                return response
+
+
 # Card Catalogue
 catalogue = {"Stoneling":
-             {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
+                 {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
              "Vexscream":
                  {"Strength": 1, "Speed": 6, "Stealth": 21, "Cunning": 19},
              "Dawnmirage":
@@ -21,26 +53,31 @@ for card_name, card_info in catalogue.items():
 
     # Loop to print dictionary inside the dictionary
     for key, value in card_info.items():
-        # Combo item and its price printed
+        # Card name and power values printed
         cards += f"{key}: {value} \n"
 
 # User enters card name
-choice = easygui.enterbox(f"Below is the full Monster Card Catalogue:\n\n"
-                          f"{cards}\n\n"
-                          f"What would you like to delete:", "Delete Card")\
-    .title()
+choice = blank_check(f"Below is the full Monster Card Catalogue:\n\n"
+                     f"{cards}\n\n"
+                     f"What would you like to delete:", "Delete Card",
+                     "enter").title()
 
 while choice not in catalogue:
     easygui.msgbox(f"Sorry, {choice} is not in the Monster Card Catalogue",
                    "Card Not Found")
 
     # User enters combo name
-    choice = easygui.enterbox(f"Below is the full Monster Card Catalogue:\n\n"
-                              f"{cards}\n\n"
-                              f"What would you like to delete:",
-                              "Delete Card").title()
+    choice = blank_check(f"Below is the full Monster Card Catalogue:\n\n"
+                         f"{cards}\n\n"
+                         f"What would you like to delete:", "Delete Card",
+                         "enter").title()
 
-# Add card to catalogue dictionary
-del [catalogue[choice]]
-easygui.msgbox(f"{choice} has been deleted from the menu", "Card Removed")
-
+# Confirm card deletion
+sure = easygui.buttonbox(f"Are you sure you want to delete {choice}\n"
+                         f"Once it is deleted this cannot be undone",
+                         "Delete Confirm", choices=["Yes", "No"])
+if sure == "Yes":
+    # Add card to catalogue dictionary
+    del [catalogue[choice]]
+    easygui.msgbox(f"{choice} has been deleted from the catalogue",
+                   "Card Removed")
