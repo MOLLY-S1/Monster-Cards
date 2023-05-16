@@ -5,54 +5,33 @@ import easygui
 
 # Blank checker function
 def blank_check(question, title, box):
-    error = "That was not a valid input\n" \
-            "Please answer all questions"
-
+    error = "Please answer all questions"
     while True:
         # Enter-box
         if box == "enter":
-            try:
-                # Ask for input
-                response = easygui.enterbox(question, title)
+            # Ask for input
+            response = easygui.enterbox(question, title)
 
-                # If cancel is pressed
-                if not response:
-                    easygui.msgbox(error, "ERROR")
+            # If cancel is pressed
+            if not response:
+                easygui.msgbox(error, "Error")
 
-                # Check if answer is given
-                if response != "":
-                    return response
+            # If valid response
+            else:
+                return response
 
-                # Show error
-                else:
-                    easygui.msgbox(error, "ERROR")
+        else:
+            # Ask for input
+            response = easygui.integerbox(question, title, upperbound=25,
+                                          lowerbound=0)
 
-            # Allow all values
-            except ValueError:
-                easygui.msgbox(error, "ERROR")
+            # If cancel is pressed
+            if not response:
+                easygui.msgbox(error, "Error")
 
-        # Integer-box
-        elif box == "integer":
-            try:
-                # Ask for input
-                response = easygui.integerbox(question, title,
-                                              upperbound=25, lowerbound=0)
-
-                # If cancel is pressed
-                if not response:
-                    easygui.msgbox(error, "ERROR")
-
-                # Check if answer is given
-                if response != "":
-                    return response
-
-                # Show error message
-                else:
-                    easygui.msgbox(error, "ERROR")
-
-            # Allow all values
-            except ValueError:
-                easygui.msgbox(error, "ERROR")
+            # If valid response
+            else:
+                return response
 
 
 # Edit card function
