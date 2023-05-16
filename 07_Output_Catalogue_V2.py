@@ -3,11 +3,11 @@
 
 
 # Function to print full catalogue
-def output_catalogue():
+def output_catalogue(card_list):
     cards = ""
 
     # loop to print dictionary
-    for card_name, card_info in catalogue.items():
+    for card_name, card_info in card_list.items():
 
         # Card name printed
         cards += f"\n{card_name}\n" \
@@ -32,4 +32,4 @@ catalogue = {"Stoneling":
              "Dawnmirage":
                  {"Strength": 5, "Speed": 15, "Stealth": 18, "Cunning": 22}}
 
-output_catalogue()
+output_catalogue(catalogue)

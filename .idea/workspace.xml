@@ -32,7 +32,7 @@
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
   <component name="RunManager" selected="Python.07_Output_Catalogue_V2">
-    <configuration name="03_Add_Card_V3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="03_Add_Card_V5" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Monster-Cards" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -44,7 +44,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/03_Add_Card_V3.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/03_Add_Card_V5.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -53,7 +53,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="06_Delete_Card_V2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="05_Search_Card_V6" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Monster-Cards" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -65,7 +65,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/06_Delete_Card_V2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/05_Search_Card_V6.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -141,9 +141,9 @@
       <list>
         <item itemvalue="Python.07_Output_Catalogue_V2" />
         <item itemvalue="Python.06_Delete_Card_V3" />
+        <item itemvalue="Python.05_Search_Card_V6" />
+        <item itemvalue="Python.03_Add_Card_V5" />
         <item itemvalue="Python.07_Output_Catalogue_V1" />
-        <item itemvalue="Python.06_Delete_Card_V2" />
-        <item itemvalue="Python.03_Add_Card_V3" />
       </list>
     </recent_temporary>
   </component>

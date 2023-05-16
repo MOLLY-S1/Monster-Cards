@@ -108,12 +108,12 @@ def add_card(card_list):
     new_cards[name]["Cunning"] = cunning
 
     correct_card = edit(new_cards)
-    cards.update(correct_card)
+    card_list.update(correct_card)
 
 
 # Main Routine
 # Card Catalogue
-cards = {"Stoneling":
+catalogue = {"Stoneling":
              {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
          "Vexscream":
              {"Strength": 1, "Speed": 6, "Stealth": 21, "Cunning": 19},
@@ -135,5 +135,4 @@ cards = {"Stoneling":
              {"Strength": 17, "Speed": 19, "Stealth": 3, "Cunning": 2}
          }
 
-add_card(cards)
-print(cards)
+add_card(catalogue)

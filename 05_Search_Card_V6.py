@@ -88,13 +88,13 @@ def edit(confirm_card):
 
 
 # Function to search catalogue for card
-def search_card():
+def search_card(card_list):
     while True:
         # User enters card name
         search_name = blank_check("Enter name of card: ", "Search",
                                   "enter").title()
 
-        while search_name not in catalogue:
+        while search_name not in card_list:
             easygui.msgbox(
                 f"Sorry {search_name} is not a card in the Monster Card "
                 f"catalogue", "Card Not Found")
@@ -104,14 +104,14 @@ def search_card():
                                       "enter").title()
 
         # Add the searched card to separate dictionary
-        searched_card = {search_name: catalogue[search_name]}
+        searched_card = {search_name: card_list[search_name]}
 
         # Confirm the searched card
         correct_card = edit(searched_card)
 
         # Update the catalogue
-        del [catalogue[search_name]]
-        catalogue.update(correct_card)
+        del [card_list[search_name]]
+        card_list.update(correct_card)
         break
 
 
@@ -123,4 +123,4 @@ catalogue = {"Stoneling":
                  {"Strength": 1, "Speed": 6, "Stealth": 21, "Cunning": 19},
              "Dawnmirage":
                  {"Strength": 5, "Speed": 15, "Stealth": 18, "Cunning": 22}}
-search_card()
+search_card(catalogue)

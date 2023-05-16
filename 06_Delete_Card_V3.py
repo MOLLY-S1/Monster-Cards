@@ -35,11 +35,11 @@ def blank_check(question, title, box):
                 return response
 
 
-def delete_card():
+def delete_card(card_list):
     cards = ""
 
     # loop to print dictionary
-    for card_name, card_info in catalogue.items():
+    for card_name, card_info in card_list.items():
 
         # Card name printed
         cards += f"\n{card_name}\n"
@@ -55,7 +55,7 @@ def delete_card():
                          f"What would you like to delete:", "Delete Card",
                          "enter").title()
 
-    while choice not in catalogue:
+    while choice not in card_list:
         easygui.msgbox(f"Sorry, {choice} is not in the Monster Card Catalogue",
                        "Card Not Found")
 
@@ -71,7 +71,7 @@ def delete_card():
                              "Delete Confirm", choices=["Yes", "No"])
     if sure == "Yes":
         # Add card to catalogue dictionary
-        del [catalogue[choice]]
+        del [card_list[choice]]
         easygui.msgbox(f"{choice} has been deleted from the catalogue",
                        "Card Removed")
 
@@ -85,4 +85,4 @@ catalogue = {"Stoneling":
              "Dawnmirage":
                  {"Strength": 5, "Speed": 15, "Stealth": 18, "Cunning": 22}}
 
-delete_card()
+delete_card(catalogue)
