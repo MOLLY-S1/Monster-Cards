@@ -1,5 +1,5 @@
 """Component 4 Version 2, Edit Card,
-Trial 1 using a function"""
+Trial 1 using a function, also trial 1 part 2 using an enterbox"""
 
 import easygui
 
