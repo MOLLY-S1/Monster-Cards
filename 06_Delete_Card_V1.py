@@ -1,4 +1,5 @@
-"""Component 6 Version 1, Delete Card"""
+"""Component 6 Version 1, Delete Card, Trial 1 using an enter-box and
+showing the full catalogue"""
 import easygui
 
 # Card Catalogue

@@ -1,5 +1,30 @@
+"""Component 6 Version 3, Delete Card , Builds on from chosen trial 2,
+Now a function and uses a confirmation statement"""
+
 import easygui
 
+
+def delete_card(card_list):
+    cards = []
+    for card_name, card_info in card_list.items():
+        # Card name added to list
+        cards.append(card_name)
+    text = "Enter any of the following cards to delete:\n"
+    title = "Delete Card"
+    delete = easygui.choicebox(text, title, cards)
+
+    # Confirm card deletion
+    sure = easygui.buttonbox(f"Are you sure you want to delete {delete}\n"
+                             f"Once it is deleted this cannot be undone",
+                             "Delete Confirm", choices=["Yes", "No"])
+    if sure == "Yes":
+        # Remove card from catalogue dictionary
+        del [card_list[delete]]
+        easygui.msgbox(f"{delete} has been deleted from the catalogue",
+                       "Card Removed")
+
+
+# Main routine
 catalogue = {"Stoneling":
                  {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
              "Vexscream":
@@ -21,11 +46,5 @@ catalogue = {"Stoneling":
              "Wispghoul":
                  {"Strength": 17, "Speed": 19, "Stealth": 3, "Cunning": 2}
              }
-cards = []
-for card_name, card_info in catalogue.items():
-    # Card name printed
-    cards.append(card_name)
-text = "Enter any of the following cards to delete:\n"
-title = "Delete Card"
-print(cards)
-delete = easygui.choicebox(text, title, cards)
+delete_card(catalogue)
+
