@@ -48,7 +48,7 @@ def blank_check(question, title, box):
                 return response
 
 
-# Edit card function
+# Function to confirm and edit cards
 def edit(confirm_card):
     while True:
         card = ""
@@ -100,7 +100,7 @@ def edit(confirm_card):
             confirm_card[new] = confirm_card.pop(card_name)
 
 
-# Add card function
+# Function to add a new card
 def add_card(card_list):
     # Dictionary for new cards to be added and edited from
     new_cards = {}
@@ -152,45 +152,24 @@ def search_card(card_list):
         break
 
 
-# Function to delete card from catalogue
+# Function to delete cards from catalogue
 def delete_card(card_list):
-    cards = ""
-
-    # loop to print dictionary
+    cards = []
     for card_name, card_info in card_list.items():
-
-        # Card name printed
-        cards += f"\n{card_name}\n"
-
-        # Loop to print dictionary inside the dictionary
-        for key, value in card_info.items():
-            # Card name and power values printed
-            cards += f"{key}: {value} \n"
-
-    # User enters card name
-    choice = blank_check(f"Below is the full Monster Card Catalogue:\n\n"
-                         f"{cards}\n\n"
-                         f"What would you like to delete:", "Delete Card",
-                         "enter").title()
-
-    while choice not in card_list:
-        easygui.msgbox(f"Sorry, {choice} is not in the Monster Card Catalogue",
-                       "Card Not Found")
-
-        # User enters combo name
-        choice = blank_check(f"Below is the full Monster Card Catalogue:\n\n"
-                             f"{cards}\n\n"
-                             f"What would you like to delete:", "Delete Card",
-                             "enter").title()
+        # Card name added to list
+        cards.append(card_name)
+    text = "Enter any of the following cards to delete:\n"
+    title = "Delete Card"
+    delete = easygui.choicebox(text, title, cards)
 
     # Confirm card deletion
-    sure = easygui.buttonbox(f"Are you sure you want to delete {choice}\n"
+    sure = easygui.buttonbox(f"Are you sure you want to delete {delete}\n"
                              f"Once it is deleted this cannot be undone",
                              "Delete Confirm", choices=["Yes", "No"])
     if sure == "Yes":
-        # Add card to catalogue dictionary
-        del [card_list[choice]]
-        easygui.msgbox(f"{choice} has been deleted from the catalogue",
+        # Remove card from catalogue dictionary
+        del [card_list[delete]]
+        easygui.msgbox(f"{delete} has been deleted from the catalogue",
                        "Card Removed")
 
 
@@ -241,7 +220,10 @@ catalogue = {"Stoneling":
              }
 
 # Welcome message
-easygui.msgbox("Welcome to Monster Card Catalogue", "Welcome")
+easygui.msgbox("------------------------------------------------------------\n"
+               "Welcome to the Monster Card Catalogue\n"
+               "-------------------------------------------------------------",
+               "Welcome")
 choice = welcome()
 
 while choice != "Exit":

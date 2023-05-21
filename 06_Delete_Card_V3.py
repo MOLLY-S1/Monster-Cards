@@ -4,6 +4,7 @@ Now a function and uses a confirmation statement"""
 import easygui
 
 
+# Function to delete cards
 def delete_card(card_list):
     cards = []
     for card_name, card_info in card_list.items():
@@ -47,4 +48,3 @@ catalogue = {"Stoneling":
                  {"Strength": 17, "Speed": 19, "Stealth": 3, "Cunning": 2}
              }
 delete_card(catalogue)
-
