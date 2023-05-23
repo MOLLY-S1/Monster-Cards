@@ -121,7 +121,12 @@ cards = {"Stoneling":
 new_cards = {}
 
 # User enters power values
-card_name = blank_check("Enter Card Name:", "Card Name", "enter")
+card_name = blank_check("Enter Card Name:", "Card Name", "enter").title()
+if card_name in cards:
+    easygui.msgbox(f"Sorry a card with the name {card_name} already exists in "
+                   f"this catalogue.\n Please choose another name", "Error")
+    card_name = blank_check("Enter Card Name:", "Card Name", "enter").title()
+
 strength = blank_check("Enter Strength Value:", "Strength",
                        "integer")
 speed = blank_check("Enter Speed Value:", "Speed", "integer")
