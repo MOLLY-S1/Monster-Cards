@@ -17,7 +17,7 @@ def welcome():
     return user_choice
 
 
-# Blank checker function
+# Blank checker function2
 def blank_check(question, title, box):
     error = "Please answer all questions"
     while True:
@@ -97,6 +97,11 @@ def edit(confirm_card):
         elif change_value == "Card Name":
             new = blank_check(f"Enter the name you want to change "
                               f"{card_name} to:", "New Name", "enter").title()
+            if new in confirm_card:
+                new = blank_check(f"Sorry that name already is already taken!"
+                                  f"Enter the name you want to change "
+                                  f"{card_name} to:", "New Name",
+                                  "enter").title()
             confirm_card[new] = confirm_card.pop(card_name)
 
 
