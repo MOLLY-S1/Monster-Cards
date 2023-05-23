@@ -38,10 +38,12 @@ def blank_check(question, title, box):
 def edit(confirm_card):
     while True:
         card = ""
+        powers = ""
         for card_name, card_info in confirm_card.items():
             title = f"\nCard Name: {card_name}"
             for key, value in card_info.items():
                 card += f"{key}: {value}\n"
+                powers += f"-{key}-"
 
         correct = easygui.buttonbox(f"Is the following card correct?\n"
                                     f"{title}\n" f"{card}", "Card Check",
@@ -69,10 +71,11 @@ def edit(confirm_card):
                                "an power in this card:\n\n"
                                f"{title}\n" f"{card}", "Error")
 
-                current_value = blank_check("Enter the name of the "
+                current_value = blank_check(f"Enter the name of the "
                                             "power which value you wish "
-                                            "to change:", "Power Name",
-                                            "enter").title()
+                                            "to change:\n"
+                                            f"The options are: {powers} ",
+                                            "Power Name", "enter").title()
 
             new = blank_check(f"Enter the value you want to change"
                               f" {current_value} to:", "New Value",
