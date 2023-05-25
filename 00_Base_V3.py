@@ -51,12 +51,10 @@ def blank_check(question, title, box):
             else:
                 return response
 
-        else:
+        elif box == "integer":
             # Ask for input
-            response = easygui.integerbox(question, title, upperbound=25,
-                                          lowerbound=0)
-            if response == "":
-                easygui.msgbox(error, "Error")
+            response = easygui.integerbox(question, title, lowerbound=1,
+                                          upperbound=25)
 
             # If cancel is pressed
             if not response:
@@ -161,6 +159,7 @@ def add_card(card_list):
 
     correct_card = edit(new_cards, card_list)
     card_list.update(correct_card)
+    welcome()
 
 
 # Function to search catalogue for card
@@ -250,7 +249,7 @@ def output_catalogue(card_list):
 # MAIN ROUTINE
 
 catalogue = {"Stoneling":
-             {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
+                 {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
              "Vexscream":
                  {"Strength": 1, "Speed": 6, "Stealth": 21, "Cunning": 19},
              "Dawnmirage":
