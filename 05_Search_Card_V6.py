@@ -103,6 +103,11 @@ def search_card(card_list):
             easygui.msgbox(
                 f"Sorry {search_name} is not a card in the Monster Card "
                 f"catalogue", "Card Not Found")
+            back = easygui.buttonbox("Would you like to continue searching?",
+                                 "Continue?", choices=["Yes", "No"])
+            if back == "No":
+                break
+
 
             # User enters card name
             search_name = blank_check("Enter name of card: ", "Search",

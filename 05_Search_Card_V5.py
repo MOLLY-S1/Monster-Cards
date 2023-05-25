@@ -50,7 +50,7 @@ def edit(confirm_card):
                                     choices=["Yes", "No"])
 
         if correct == "Yes":
-            easygui.msgbox(f"You have sucessfully entered the new card "
+            easygui.msgbox(f"You have successfully entered the new card "
                            f"{card_name} to the Monster Cards Catalogue",
                            "Card added")
             return confirm_card
@@ -94,7 +94,7 @@ def edit(confirm_card):
 
 
 catalogue = {"Stoneling":
-             {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
+                 {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
              "Vexscream":
                  {"Strength": 1, "Speed": 6, "Stealth": 21, "Cunning": 19},
              "Dawnmirage":
@@ -102,8 +102,10 @@ catalogue = {"Stoneling":
 
 while True:
     # User enters card name
-    search_name = blank_check("Enter name of card: ", "Search",
-                              "enter").title()
+    search_name = easygui.enterbox("Enter name of card: ", "Search").title()
+
+    if not search_name:
+        break
 
     while search_name not in catalogue:
         easygui.msgbox(
@@ -111,8 +113,8 @@ while True:
             f"catalogue", "Card Not Found")
 
         # User enters card name
-        search_name = blank_check("Enter name of card: ", "Search",
-                                  "enter").title()
+        search_name = easygui.enterbox("Enter name of card: ", "Search").\
+            title()
 
     # Add the searched card to separate dictionary
     searched_card = {search_name: catalogue[search_name]}

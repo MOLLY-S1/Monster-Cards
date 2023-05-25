@@ -14,6 +14,9 @@ def delete_card(card_list):
     title = "Delete Card"
     delete = easygui.choicebox(text, title, cards)
 
+    if not delete:
+        return
+
     # Confirm card deletion
     sure = easygui.buttonbox(f"Are you sure you want to delete {delete}\n"
                              f"Once it is deleted this cannot be undone",
