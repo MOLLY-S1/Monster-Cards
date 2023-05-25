@@ -13,8 +13,22 @@ def welcome():
                                              "Delete Card", "Output Catalogue",
                                              "Exit"])
 
-    # Output user choice
-    return user_choice
+    # Call on corresponding functions
+    while user_choice != "Exit":
+        if user_choice == "Add Cards":
+            add_card(catalogue)
+
+        elif user_choice == "Search Catalogue":
+            search_card(catalogue)
+
+        elif user_choice == "Delete Card":
+            delete_card(catalogue)
+
+        elif user_choice == "Output Catalogue":
+            output_catalogue(catalogue)
+
+    easygui.msgbox("Goodbye", "Goodbye")
+    exit()
 
 
 # Blank checker function
@@ -26,9 +40,12 @@ def blank_check(question, title, box):
             # Ask for input
             response = easygui.enterbox(question, title)
 
+            if response == "":
+                easygui.msgbox(error, "Error")
+
             # If cancel is pressed
             if not response:
-                easygui.msgbox(error, "Error")
+                welcome()
 
             # If valid response
             else:
@@ -38,10 +55,12 @@ def blank_check(question, title, box):
             # Ask for input
             response = easygui.integerbox(question, title, upperbound=25,
                                           lowerbound=0)
+            if response == "":
+                easygui.msgbox(error, "Error")
 
             # If cancel is pressed
             if not response:
-                easygui.msgbox(error, "Error")
+                welcome()
 
             # If valid response
             else:
@@ -115,9 +134,10 @@ def add_card(card_list):
 
     # User enters power values
     name = blank_check("Enter Card Name:", "Card Name", "enter").title()
+    checked_name = name.title()
 
     # Check if the entered name is already in the catalogue
-    while name in card_list:
+    while checked_name in card_list:
         easygui.msgbox(f"Sorry a card with the name {name} already exists in "
                        f"this catalogue, please choose another name",
                        "Error")
@@ -184,7 +204,7 @@ def delete_card(card_list):
     delete = easygui.choicebox(text, title, cards)
 
     if not delete:
-        return
+        welcome()
 
     # Confirm card deletion
     sure = easygui.buttonbox(f"Are you sure you want to delete {delete}\n"
@@ -195,6 +215,9 @@ def delete_card(card_list):
         del [card_list[delete]]
         easygui.msgbox(f"{delete} has been deleted from the catalogue",
                        "Card Removed")
+        welcome()
+
+    welcome()
 
 
 # Function to print full catalogue
@@ -213,16 +236,19 @@ def output_catalogue(card_list):
             # Card name and power values printed
             cards += f"{key}: {value} \n"
 
-    print(f"-----------------------\n"
-          f"Monster Card Catalogue:\n"
-          f"-----------------------\n"
-          f"{cards}\n\n")
+    full_output = f"-----------------------\n" \
+                  f"Monster Card Catalogue:\n" \
+                  f"-----------------------\n" \
+                  f"{cards}\n\n"
+
+    print(full_output)
+    welcome()
 
 
 # MAIN ROUTINE
 
 catalogue = {"Stoneling":
-             {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
+                 {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
              "Vexscream":
                  {"Strength": 1, "Speed": 6, "Stealth": 21, "Cunning": 19},
              "Dawnmirage":
@@ -248,23 +274,4 @@ easygui.msgbox("------------------------------------------------------------\n"
                "Welcome to the Monster Card Catalogue\n"
                "-------------------------------------------------------------",
                "Welcome")
-choice = welcome()
-
-while choice != "Exit":
-    if choice == "Add Cards":
-        add_card(catalogue)
-        choice = welcome()
-
-    elif choice == "Search Catalogue":
-        search_card(catalogue)
-        choice = welcome()
-
-    elif choice == "Delete Card":
-        delete_card(catalogue)
-        choice = welcome()
-
-    elif choice == "Output Catalogue":
-        output_catalogue(catalogue)
-        choice = welcome()
-
-easygui.msgbox("Goodbye", "Goodbye")
+welcome()
