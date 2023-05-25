@@ -72,6 +72,8 @@ def edit(confirm_card, card_list):
     while True:
         card = ""
         powers = ""
+        card_name = ""
+        title = ""
         for card_name, card_info in confirm_card.items():
             title = f"\nCard Name: {card_name}"
             for key, value in card_info.items():
@@ -83,7 +85,7 @@ def edit(confirm_card, card_list):
                                     choices=["Yes", "No"])
 
         if correct == "Yes":
-            easygui.msgbox(f"You have sucessfully entered the new card "
+            easygui.msgbox(f"You have successfully entered the new card "
                            f"{card_name} to the Monster Cards Catalogue",
                            "Card added")
             return confirm_card
@@ -190,7 +192,7 @@ def search_card(card_list):
         # Update the catalogue
         del [card_list[search_name]]
         card_list.update(correct_card)
-        break
+        welcome()
 
 
 # Function to delete cards from catalogue
@@ -248,7 +250,7 @@ def output_catalogue(card_list):
 # MAIN ROUTINE
 
 catalogue = {"Stoneling":
-                 {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
+             {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
              "Vexscream":
                  {"Strength": 1, "Speed": 6, "Stealth": 21, "Cunning": 19},
              "Dawnmirage":

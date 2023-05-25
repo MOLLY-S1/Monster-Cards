@@ -31,7 +31,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Burger-Menu-Combos/00_Base_Final.py" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.00_Base_V2">
+  <component name="RunManager" selected="Python.00_Base_V3">
     <configuration name="00_Base_V2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Monster-Cards" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -160,8 +160,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.00_Base_V2" />
         <item itemvalue="Python.00_Base_V3" />
+        <item itemvalue="Python.00_Base_V2" />
         <item itemvalue="Python.05_Search_Card_V5" />
         <item itemvalue="Python.05_Search_Card_V6" />
         <item itemvalue="Python.06_Delete_Card_V3" />
