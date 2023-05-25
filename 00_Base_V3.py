@@ -1,4 +1,4 @@
-""" Base Component
+"""Base Component
 Functions added when they have been tested and completed after editing
 """
 
