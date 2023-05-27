@@ -1,5 +1,5 @@
 """Base Component
-Functions added when they have been tested and completed after editing
+Final version of code
 """
 
 import easygui
