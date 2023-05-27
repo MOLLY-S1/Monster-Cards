@@ -1,5 +1,5 @@
 """Base Component
-Final version of code
+Final version of code after testing, trialling and end-user testing
 """
 
 import easygui
