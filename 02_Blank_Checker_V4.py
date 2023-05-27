@@ -14,22 +14,25 @@ def blank_check(question, title, box):
             # Ask for input
             response = easygui.enterbox(question, title)
 
+            if response == "":
+                easygui.msgbox(error, "Error")
+
             # If cancel is pressed
             if not response:
-                easygui.msgbox(error, "Error")
+                print("Return to menu")
 
             # If valid response
             else:
                 return response
 
-        else:
+        elif box == "integer":
             # Ask for input
-            response = easygui.integerbox(question, title, upperbound=25,
-                                          lowerbound=0)
+            response = easygui.integerbox(question, title, lowerbound=1,
+                                          upperbound=25)
 
             # If cancel is pressed
             if not response:
-                easygui.msgbox(error, "Error")
+                print("Return to menu")
 
             # If valid response
             else:
